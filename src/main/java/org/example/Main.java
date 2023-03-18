@@ -40,10 +40,23 @@ public class Main {
                 }
                 case 3 -> {
                     try {
-                        System.out.println("Dodaj nowy przychód");
-                        in.nextLine();
-                        String income = in.nextLine();
-                       // incomeService.addIncome();
+                        System.out.println("Podaj kwotę: ");
+                        BigDecimal kwota = in.nextBigDecimal();
+
+                        System.out.println("Podaj datę dodania: ");
+                        LocalDate dataDodania = LocalDate.parse(in.next());
+
+                        System.out.println("Dodaj komentarz: ");
+                        String komentarz= in.next();
+
+
+                        boolean result = incomeService.addIncome(kwota, dataDodania,komentarz);
+
+                        if (result) {
+                            System.out.println("Pomyślnie utworzono wydatek");
+                        } else {
+                            System.out.println("Nie utworzono wydatku");
+                        }
                     } catch (IllegalArgumentException e) {
                         System.err.println(e.getMessage());
                     }
@@ -71,4 +84,8 @@ public class Main {
                 }
 
             }
-        }}}
+        }
+
+
+    }
+}
