@@ -22,6 +22,7 @@ public class Main {
 
             System.out.println("Wybierz operacje");
             System.out.println("12 - Dodawanie nowej kategorii");
+            System.out.println("13 - Usuwanie kategorii");
 
 
             int decision = in.nextInt();
@@ -37,6 +38,17 @@ public class Main {
                         in.nextLine();
                         String categoryName = in.nextLine();
                         categoryService.addCategory(categoryName);
+                    } catch (IllegalArgumentException e) {
+                        System.err.println(e.getMessage());
+                    }
+                }
+                case 13 -> {
+                    try {
+                        System.out.println(CategoryService.getAllNames());
+                        System.out.println("Wpisz nazwę kategorii do usunięcia");
+                        in.nextLine();
+                        String categoryName = in.nextLine();
+                        categoryService.deleteCategory(categoryName);
                     } catch (IllegalArgumentException e) {
                         System.err.println(e.getMessage());
                     }
