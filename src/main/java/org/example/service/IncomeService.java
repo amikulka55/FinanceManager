@@ -13,11 +13,14 @@ public class IncomeService {
 
     private static IncomeDao incomeDao = new IncomeDao();
 
-public static void addIncome(BigDecimal kwota, LocalDate dataDodania, String komentarz){
-    if(income.getDataDodania() != null && income.getKwota() != null){
+public static boolean addIncome(BigDecimal kwota, LocalDate dataDodania, String komentarz){
+    if(dataDodania != null && kwota != null){
     Income income = new Income(null, kwota, dataDodania,komentarz);
     incomeDao.save(income);
+    return true;
     }
+    return false;
+
 
 }
 
