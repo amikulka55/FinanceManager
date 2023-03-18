@@ -29,7 +29,22 @@ public class CategoryDao {
                 .findFirst()
                 .orElse(null);
     }
+ /* public static  void delete(String categoryName){
+        String hql = "DELETE FROM Category WHERE = :p1";
+        Session session = DBConnection.getSession();
+        Query query = session.createQuery(hql);
+        query.setParameter("p1",categoryName);
+
+        session.close();
+
+    }*/
+ public void delete(Category category) {
+     Session session = DBConnection.getSession();
+     session.getTransaction().begin();
+     session.remove(category);
+     session.getTransaction().commit();
+     session.close();
 
 
-    }
+    }}
 
