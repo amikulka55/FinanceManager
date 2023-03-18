@@ -3,8 +3,12 @@ package org.example;
 import org.example.dao.CategoryDao;
 import org.example.entity.Category;
 import org.example.service.CategoryService;
+import org.example.service.IncomeService;
 import org.hibernate.Session;
 
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Main {
@@ -17,10 +21,12 @@ public class Main {
         categoryDao = new CategoryDao();
 
         CategoryService categoryService = new CategoryService();
+        IncomeService incomeService = new IncomeService();
         Scanner in = new Scanner(System.in);
         while (true) {
 
             System.out.println("Wybierz operacje");
+            System.out.println("3 - Dodwawanie nowego przychodu");
             System.out.println("12 - Dodawanie nowej kategorii");
             System.out.println("13 - Usuwanie kategorii");
 
@@ -31,6 +37,16 @@ public class Main {
                 case 0 -> {
                     DBConnection.getSession();
                     System.exit(0);
+                }
+                case 3 -> {
+                    try {
+                        System.out.println("Dodaj nowy przychód");
+                        in.nextLine();
+                        String income = in.nextLine();
+                       // incomeService.addIncome();
+                    } catch (IllegalArgumentException e) {
+                        System.err.println(e.getMessage());
+                    }
                 }
                 case 12 -> {
                     try {
