@@ -7,11 +7,11 @@ import org.example.entity.Category;
 public class CategoryService {
 
 
-private static final CategoryDao categoryDao = new CategoryDao();
+    private static final CategoryDao categoryDao = new CategoryDao();
 
 
     public void addCategory(String categoryName) {
-        if (categoryName != null && !Category.existByCategory(categoryName) && categoryName.length() > 2) {
+        if (categoryName != null && existByName(categoryName) && categoryName.length() > 2) {
             Category category = new Category(null, categoryName);
             category.setNazwa(categoryName);
             categoryDao.insert(category);
@@ -20,7 +20,11 @@ private static final CategoryDao categoryDao = new CategoryDao();
         }
     }
 
-        public void deleteCategory (String categoryName){
+    public static boolean existByName(String categoryName) {
+        return categoryDao.getByName(categoryName) == null;
+    }
 
-        }
+    public void deleteCategory(String categoryName) {
+
+    }
 }

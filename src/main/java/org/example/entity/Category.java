@@ -5,6 +5,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
+import org.example.DBConnection;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -25,8 +30,6 @@ public class Category {
         this.nazwa = nazwa;
     }
 
-    public static boolean existByCategory(String categoryName) {
-        return true;
-    }
+
 }
 

@@ -3,6 +3,9 @@ package org.example.dao;
 import org.example.DBConnection;
 import org.example.entity.Category;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
+
+import java.util.List;
 
 public class CategoryDao {
     public void insert(Category category) {
@@ -13,7 +16,20 @@ public class CategoryDao {
         session.close();
     }
 
+    public static Category getByName(String name){
+        String hql = "FROM Category WHERE nazwa = :p1";
+        Session session = DBConnection.getSession();
+        Query query = session.createQuery(hql);
+        query.setParameter("p1",name);
+        List<Category> resultList = query.getResultList();
+        session.close();
 
-    public void save(Category category) {
+        return  resultList
+                .stream()
+                .findFirst()
+                .orElse(null);
     }
-}
+
+
+    }
+
