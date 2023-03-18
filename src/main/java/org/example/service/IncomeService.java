@@ -1,11 +1,16 @@
 package org.example.service;
 
 
+import org.example.DBConnection;
 import org.example.dao.IncomeDao;
+import org.example.dto.IncomeDto;
 import org.example.entity.Income;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 public class IncomeService {
 
@@ -23,5 +28,9 @@ public static boolean addIncome(BigDecimal kwota, LocalDate dataDodania, String 
 
 
 }
+
+
+
+
 
 }
