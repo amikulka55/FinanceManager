@@ -27,6 +27,7 @@ public class Main {
 
             System.out.println("Wybierz operacje");
             System.out.println("3 - Dodwawanie nowego przychodu");
+            System.out.println("10 - Wyświetlanie wszystkich przychodów");
             System.out.println("12 - Dodawanie nowej kategorii");
             System.out.println("13 - Usuwanie kategorii");
 
