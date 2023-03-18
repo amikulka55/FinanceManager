@@ -1,10 +1,7 @@
 package org.example.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.Setter;
+import lombok.*;
 import org.example.DBConnection;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -12,6 +9,7 @@ import org.hibernate.query.Query;
 import java.util.List;
 
 @Entity
+@ToString
 @Getter
 @Setter
 @NoArgsConstructor
