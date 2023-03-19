@@ -1,6 +1,7 @@
 package org.example;
 
 import org.example.dao.CategoryDao;
+import org.example.dto.ExpenseDto;
 import org.example.dto.IncomeDto;
 import org.example.entity.Category;
 import org.example.service.CategoryService;
@@ -30,9 +31,11 @@ public class Main {
         while (true) {
 
             System.out.println("Wybierz operacje");
-            System.out.println("1- Dodawanie nowego wydatku");
+            System.out.println("0 - Kończenie działania aplikacji");
+            System.out.println("1 - Dodawanie nowego wydatku");
             System.out.println("2 - Dodawanie nowego przychodu");
             System.out.println("4 - Usuwanie przychodu");
+            System.out.println("6 - Wyświetlenie wszystkich wydatków");
             System.out.println("10 - Wyświetlanie wszystkich przychodów");
             System.out.println("12 - Dodawanie nowej kategorii");
             System.out.println("13 - Usuwanie kategorii");
@@ -56,8 +59,10 @@ public class Main {
                         System.out.println("Dodaj komentarz: ");
                         String komentarz= in.next();
 
+                        System.out.println("Dodaj kategorię: ");
+                        String kategoria= in.next();
 
-                        boolean result = expenseService.addExpense(kwota, dataDodania,komentarz);
+                        boolean result = expenseService.addExpense(kwota, dataDodania,komentarz, kategoria);
 
                         if (result) {
                             System.out.println("Pomyślnie utworzono wydatek");
@@ -102,6 +107,10 @@ public class Main {
                     } catch (IllegalArgumentException e) {
                         System.err.println(e.getMessage());
                     }
+                }
+                case 6-> {
+                    List<ExpenseDto> expenses = expenseService.getExpenses();
+                    expenses.forEach(System.out::println);
                 }
                 case 10-> {
                     List<IncomeDto> incomes = incomeService.getIncomes();

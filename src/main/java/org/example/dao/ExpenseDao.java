@@ -19,6 +19,14 @@ public class ExpenseDao {
         transaction.commit();
         session.close();
     }
+    public static List<Expense> findAll(){
+        String hql = " FROM Expense";
+        Session session = DBConnection.getSession();
+        Query query = session.createQuery(hql);
+        List<Expense> resultList = query.getResultList();
+        session.close();
+        return resultList;
+    }
 
 }
 
