@@ -33,4 +33,11 @@ public class ExpenseService {
         List<Expense> expenses = expenseDao.findAll();
         return expenses.stream().map(i -> new ExpenseDto(i.getId(), i.getKwota(), i.getDataDodania(), i.getKomentarz())).toList();
     }
-}
+
+    public void deleteById(int selectedId) {
+        if (selectedId > 0) {
+            expenseDao.deleteById(selectedId);
+        } else {
+            throw new IllegalArgumentException("id can not be lower than 0");
+        }
+}}

@@ -96,6 +96,18 @@ public class Main {
                         System.err.println(e.getMessage());
                     }
                 }
+                case 3 -> {
+                    List<ExpenseDto> expenses =expenseService.getExpenses();
+
+                    System.out.println("Wybierz wydatek do usunięcia");
+                    expenses.forEach(System.out::println);
+                    int selectedId = in.nextInt();
+                    try {
+                        expenseService.deleteById(selectedId);
+                    } catch (IllegalArgumentException e) {
+                        System.err.println(e.getMessage());
+                    }
+                }
                 case 4 -> {
                     List<IncomeDto> incomes = incomeService.getIncomes();
 

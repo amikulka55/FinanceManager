@@ -27,6 +27,15 @@ public class ExpenseDao {
         session.close();
         return resultList;
     }
+    public void deleteById(int selectedId) {
+        Session session = DBConnection.getSession();
+        Query delete = session.createQuery("DELETE FROM Expense i where i.id=:id")
+                .setParameter("id", selectedId);
+        session.getTransaction().begin();
+        delete.executeUpdate();
+        session.getTransaction().commit();
+        session.close();
+    }
 
 }
 
