@@ -4,6 +4,7 @@ import org.example.dao.CategoryDao;
 import org.example.dto.ExpenseDto;
 import org.example.dto.IncomeDto;
 import org.example.entity.Category;
+import org.example.entity.Expense;
 import org.example.service.CategoryService;
 import org.example.service.ExpenseService;
 import org.example.service.IncomeService;
@@ -34,8 +35,11 @@ public class Main {
             System.out.println("0 - Kończenie działania aplikacji");
             System.out.println("1 - Dodawanie nowego wydatku");
             System.out.println("2 - Dodawanie nowego przychodu");
+            System.out.println("3 - Usuwanie wydatku");
             System.out.println("4 - Usuwanie przychodu");
+            System.out.println("5 - Wyświetl wszystkie wydatki i przychody");
             System.out.println("6 - Wyświetlenie wszystkich wydatków");
+            System.out.println("7 - Wyświetlanie wydatków na podstawie zakresu dat");
             System.out.println("10 - Wyświetlanie wszystkich przychodów");
             System.out.println("12 - Dodawanie nowej kategorii");
             System.out.println("13 - Usuwanie kategorii");
@@ -120,10 +124,33 @@ public class Main {
                         System.err.println(e.getMessage());
                     }
                 }
+              case 5-> {
+                  List<ExpenseDto> expenses = expenseService.getExpenses();
+                  expenses.forEach(System.out::println);
+                  List<IncomeDto> incomes = incomeService.getIncomes();
+                  incomes.forEach(System.out::println);
+              }
                 case 6-> {
                     List<ExpenseDto> expenses = expenseService.getExpenses();
                     expenses.forEach(System.out::println);
                 }
+                case 7-> {
+                    try {
+                        System.out.println("Podaj datę ");
+                        LocalDate data1 = LocalDate.parse(in.next());
+
+                        System.out.println("Podaj datę ");
+                        LocalDate data2 = LocalDate.parse(in.next());
+
+
+                        List<ExpenseDto> result = expenseService.findByDate(data1, data2);
+                        System.out.println(result);
+
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+
                 case 10-> {
                     List<IncomeDto> incomes = incomeService.getIncomes();
                     incomes.forEach(System.out::println);

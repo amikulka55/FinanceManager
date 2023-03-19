@@ -25,7 +25,7 @@ private LocalDate dataDodania;
 
 private String komentarz;
 
-    public Income(BigDecimal kwota, BigDecimal bigDecimal, LocalDate dataDodania, String komentarz) {
+    public Income(BigDecimal kwota, LocalDate dataDodania, String komentarz) {
         this.kwota = kwota;
         this.dataDodania = dataDodania;
         this.komentarz = komentarz;

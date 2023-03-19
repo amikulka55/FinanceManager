@@ -21,7 +21,7 @@ public class IncomeDao {
         session.close();
     }
     public static List<Income> findAll(){
-        String hql = " FROM Category";
+        String hql = " FROM Income";
         Session session = DBConnection.getSession();
         Query query = session.createQuery(hql);
         List<Income> resultList = query.getResultList();

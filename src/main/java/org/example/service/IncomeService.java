@@ -20,7 +20,7 @@ public class IncomeService {
 
 public static boolean addIncome(BigDecimal kwota, LocalDate dataDodania, String komentarz){
     if(dataDodania != null && kwota != null){
-    Income income = new Income(null, kwota, dataDodania,komentarz);
+    Income income = new Income(kwota, dataDodania,komentarz);
     incomeDao.save(income);
     return true;
     }
