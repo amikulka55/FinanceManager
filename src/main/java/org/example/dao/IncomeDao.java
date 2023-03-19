@@ -28,4 +28,14 @@ public class IncomeDao {
         session.close();
         return resultList;
     }
+
+    public void deleteById(int selectedId) {
+        Session session = DBConnection.getSession();
+        Query delete = session.createQuery("DELETE FROM Income i where i.id=:id")
+                .setParameter("id", selectedId);
+        session.getTransaction().begin();
+        delete.executeUpdate();
+        session.getTransaction().commit();
+        session.close();
+    }
 }
