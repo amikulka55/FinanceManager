@@ -16,7 +16,7 @@ public class CategoryDao {
         session.close();
     }
 
-    public static Category getByName(String name){
+    public  Category getByName(String name){
         String hql = "FROM Category WHERE nazwa = :p1";
         Session session = DBConnection.getSession();
         Query query = session.createQuery(hql);
