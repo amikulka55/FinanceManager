@@ -4,6 +4,7 @@ import org.example.dao.CategoryDao;
 import org.example.dto.IncomeDto;
 import org.example.entity.Category;
 import org.example.service.CategoryService;
+import org.example.service.ExpenseService;
 import org.example.service.IncomeService;
 import org.hibernate.Session;
 
@@ -24,11 +25,13 @@ public class Main {
 
         CategoryService categoryService = new CategoryService();
         IncomeService incomeService = new IncomeService();
+        ExpenseService expenseService = new ExpenseService();
         Scanner in = new Scanner(System.in);
         while (true) {
 
             System.out.println("Wybierz operacje");
-            System.out.println("3 - Dodwawanie nowego przychodu");
+            System.out.println("1- Dodawanie nowego wydatku");
+            System.out.println("2 - Dodawanie nowego przychodu");
             System.out.println("4 - Usuwanie przychodu");
             System.out.println("10 - Wyświetlanie wszystkich przychodów");
             System.out.println("12 - Dodawanie nowej kategorii");
@@ -42,7 +45,30 @@ public class Main {
                     DBConnection.getSession();
                     System.exit(0);
                 }
-                case 3 -> {
+                case 1 -> {
+                    try {
+                        System.out.println("Podaj kwotę: ");
+                        BigDecimal kwota = in.nextBigDecimal();
+
+                        System.out.println("Podaj datę dodania: ");
+                        LocalDate dataDodania = LocalDate.parse(in.next());
+
+                        System.out.println("Dodaj komentarz: ");
+                        String komentarz= in.next();
+
+
+                        boolean result = expenseService.addExpense(kwota, dataDodania,komentarz);
+
+                        if (result) {
+                            System.out.println("Pomyślnie utworzono wydatek");
+                        } else {
+                            System.out.println("Nie utworzono wydatku");
+                        }
+                    } catch (IllegalArgumentException e) {
+                        System.err.println(e.getMessage());
+                    }
+                }
+                case 2 -> {
                     try {
                         System.out.println("Podaj kwotę: ");
                         BigDecimal kwota = in.nextBigDecimal();
