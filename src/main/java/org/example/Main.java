@@ -1,6 +1,7 @@
 package org.example;
 
 import org.example.dao.CategoryDao;
+import org.example.dto.IncomeDto;
 import org.example.entity.Category;
 import org.example.service.CategoryService;
 import org.example.service.IncomeService;
@@ -9,6 +10,7 @@ import org.hibernate.Session;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -27,6 +29,7 @@ public class Main {
 
             System.out.println("Wybierz operacje");
             System.out.println("3 - Dodwawanie nowego przychodu");
+            System.out.println("4 - Usuwanie przychodu");
             System.out.println("10 - Wyświetlanie wszystkich przychodów");
             System.out.println("12 - Dodawanie nowej kategorii");
             System.out.println("13 - Usuwanie kategorii");
@@ -54,13 +57,29 @@ public class Main {
                         boolean result = incomeService.addIncome(kwota, dataDodania,komentarz);
 
                         if (result) {
-                            System.out.println("Pomyślnie utworzono wydatek");
+                            System.out.println("Pomyślnie utworzono przychód");
                         } else {
-                            System.out.println("Nie utworzono wydatku");
+                            System.out.println("Nie utworzono przychodu");
                         }
                     } catch (IllegalArgumentException e) {
                         System.err.println(e.getMessage());
                     }
+                }
+                case 4 -> {
+                    List<IncomeDto> incomes = incomeService.getIncomes();
+
+                    System.out.println("Wybierz przychód do usunięcia");
+                    incomes.forEach(System.out::println);
+                    int selectedId = in.nextInt();
+                    try {
+                        incomeService.deleteById(selectedId);
+                    } catch (IllegalArgumentException e) {
+                        System.err.println(e.getMessage());
+                    }
+                }
+                case 10-> {
+                    List<IncomeDto> incomes = incomeService.getIncomes();
+                    incomes.forEach(System.out::println);
                 }
                 case 12 -> {
                     try {

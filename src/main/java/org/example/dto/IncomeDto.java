@@ -18,4 +18,14 @@ public class IncomeDto {
     private LocalDate dataDodania;
 
     private String komentarz;
+
+    @Override
+    public String toString() {
+        return "IncomeDto{" +
+                "Id=" + Id +
+                ", kwota=" + kwota + "zł" +
+                ", dataDodania=" + dataDodania +
+                ", komentarz='" + komentarz + '\'' +
+                '}';
+    }
 }
